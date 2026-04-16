@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 // ⚠️ Reemplaza con tu API Key y Place ID de Google
-const GOOGLE_API_KEY = "TU_API_KEY";
-const PLACE_ID = "TU_PLACE_ID";
+const API_KEY = "AIzaSyDrXhRquuyARqjTfIGIry-OYjFF6W0sM4Q";
+const PLACE_ID = "ChIJp8uJAYxtyYcRClxXQmQ7vOM";
 
 // Testimonios de ejemplo — se reemplazan cuando conectes la API
 const fallbackTestimonials = [
@@ -110,41 +110,49 @@ export default function Testimonials() {
   const [error, setError] = useState(null);
   const [averageRating, setAverageRating] = useState(4.9);
   const [totalReviews, setTotalReviews] = useState(128);
+  
 
   // 🔌 Descomenta esto cuando tengas tu API Key y Place ID listos
-  /*
+
   useEffect(() => {
-    async function fetchGoogleReviews() {
-      setLoading(true);
-      try {
-        const res = await fetch(
-          `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews,rating,user_ratings_total&key=${GOOGLE_API_KEY}`
-        );
-        const data = await res.json();
-        const reviews = data.result?.reviews;
+  async function fetchGoogleReviews() {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/reviews");
+      const data = await res.json();
+      
+      // Google a veces devuelve los datos dentro de data.result
+      const reviews = data.result?.reviews;
 
-        if (reviews && reviews.length > 0) {
-          const mapped = reviews.map((r) => ({
-            name: r.author_name,
-            rating: r.rating,
-            text: r.text,
-            date: r.relative_time_description,
-            initials: r.author_name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase(),
-          }));
-          setTestimonials(mapped);
-          setAverageRating(data.result.rating);
-          setTotalReviews(data.result.user_ratings_total);
-        }
-      } catch (err) {
-        setError("No se pudieron cargar las reseñas.");
-      } finally {
-        setLoading(false);
+      if (reviews && Array.isArray(reviews)) {
+        const mapped = reviews.map((r) => ({
+          name: r.author_name,
+          rating: r.rating,
+          text: r.text,
+          date: r.relative_time_description,
+          // Mejora de seguridad para las iniciales
+          initials: (r.author_name || "U")
+            .split(" ")
+            .filter(name => name.length > 0) 
+            .map((n) => n[0])
+            .join("")
+            .slice(0, 2)
+            .toUpperCase(),
+        }));
+        setTestimonials(mapped);
+        if (data.result.rating) setAverageRating(data.result.rating);
+        if (data.result.user_ratings_total) setTotalReviews(data.result.user_ratings_total);
       }
+    } catch (err) {
+      console.error("Error fetching reviews:", err);
+      setError("No se pudieron cargar las reseñas.");
+    } finally {
+      setLoading(false);
     }
+  }
 
-    fetchGoogleReviews();
-  }, []);
-  */
+  fetchGoogleReviews();
+}, []);
 
   return (
     <section

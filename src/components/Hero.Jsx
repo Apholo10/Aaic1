@@ -1,17 +1,8 @@
 import { ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
+
 
 export default function Hero() {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-    useEffect(() => {
-        function handleMouseMove(e) {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-        }
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, []);
-
+   
     return (
         <section className="relative min-h-screen flex items-center justify-center pt-16 sm:pt-20 overflow-hidden">
 
