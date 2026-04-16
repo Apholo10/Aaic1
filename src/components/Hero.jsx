@@ -1,4 +1,3 @@
-<<<<<<< HEAD:src/components/Hero.Jsx
 import { ArrowRight } from "lucide-react";
 
 
