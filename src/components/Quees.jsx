@@ -33,7 +33,7 @@ export default function Quees() {
             <div className="relative rounded-2xl overflow-hidden bg-[#f7f5f2] border border-[#1a1a2e]/8 aspect-[4/3]">
               <img
                 src="/src/assets/quees.webp"
-                alt="Clínica Autoinjure"
+                alt="Clínica Autoinjur"
                 className="h-full w-full object-cover"
               />
               {/* Línea de acento rojo en la parte inferior */}
