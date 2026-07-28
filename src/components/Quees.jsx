@@ -32,7 +32,7 @@ export default function Quees() {
           <div className="relative w-full order-2 lg:order-1">
             <div className="relative rounded-2xl overflow-hidden bg-[#f7f5f2] border border-[#1a1a2e]/8 aspect-[4/3]">
               <img
-                src="/assets/quees.jpg"
+                src="/quees.jpg"
                 alt="Clínica Autoinjur"
                 className="h-full w-full object-cover"
               />
