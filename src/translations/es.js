@@ -85,7 +85,7 @@ const es = {
           "Te ayudamos con toda la documentación médica necesaria para tu reclamación de seguro o caso legal. Trabajamos directamente con abogados de lesiones personales.",
         stats: [
           { value: "Sin costo", label: "Consulta inicial" },
-          { value: "Directo", label: "Con tu abogado" },
+          { value: "Directo", label: "Con la aseguranza o tu abogado" },
         ],
       },
     ],
