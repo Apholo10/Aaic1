@@ -121,7 +121,7 @@ const en = {
           "Whiplash is the most common injury in rear-end accidents. Our specific protocol relieves neck, shoulder and head pain effectively.",
       },
       {
-        title: "Rehabilitation & Physical Therapy",
+        title: "Rehabilitation",
         description:
           "Personalized rehabilitation plans to restore mobility, strength and function after the accident. We combine chiropractic with therapeutic exercises.",
       },
