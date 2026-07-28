@@ -1,4 +1,5 @@
 import { useTranslation } from "../hooks/useTranslation";
+import queesImg from "../assets/quees.jpg";
 
 /*
  * ============================================================
@@ -32,7 +33,7 @@ export default function Quees() {
           <div className="relative w-full order-2 lg:order-1">
             <div className="relative rounded-2xl overflow-hidden bg-[#f7f5f2] border border-[#1a1a2e]/8 aspect-[4/3]">
               <img
-                src="/quees.jpg"
+                src={queesImg}
                 alt="Clínica Autoinjur"
                 className="h-full w-full object-cover"
               />
