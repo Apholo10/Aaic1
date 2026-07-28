@@ -1,46 +1,50 @@
+import { useTranslation } from "../hooks/useTranslation";
+
+/*
+ * ============================================================
+ *  Footer.jsx — Pie de página con traducciones
+ * ============================================================
+ *
+ *  Las columnas de links vienen de t("footer.categories"),
+ *  que es un OBJETO: cada clave es el título de la columna
+ *  ("Services" / "Servicios") y su valor es un array de links
+ *  { label, href }.
+ *
+ *  Object.entries() convierte ese objeto en un array de pares
+ *  [titulo, links] para poder mapearlo.
+ */
 export default function Footer() {
+  const { t } = useTranslation();
+
+  // Año actual generado automáticamente — nunca queda desactualizado
   const currentYear = new Date().getFullYear();
 
-  const links = {
-    Servicios: [
-      { label: "Quiropráctica", href: "#Features" },
-      { label: "Dolor de cuello", href: "#Features" },
-      { label: "Dolor de espalda", href: "#Features" },
-      { label: "Documentación legal", href: "#Features" },
-    ],
-    Compañía: [
-      { label: "Quiénes somos", href: "#AboutUs" },
-      { label: "Nuestro equipo", href: "#AboutUs" },
-      { label: "Reseñas", href: "#Testimonials" },
-      { label: "Contacto", href: "#contacto" },
-    ],
-    Legal: [
-      { label: "Política de privacidad", href: "#" },
-      { label: "Términos de uso", href: "#" },
-      { label: "HIPAA", href: "#" },
-    ],
-  };
+  // Objeto de categorías en el idioma activo
+  const categories = t("footer.categories");
 
   return (
     <footer className="bg-[#1a1a2e] border-t border-white/10 pt-14 pb-8 px-6 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
 
-        {/* Top row */}
+        {/* ===== FILA SUPERIOR: BRAND + COLUMNAS DE LINKS ===== */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
 
-          {/* Brand */}
+          {/* ===== BRAND ===== */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <img src="/logo-1.png" alt="AAIC Logo" className="w-7 h-7" />
-              <span className="text-white font-bold text-lg tracking-wide">AAIC</span>
+              <span className="text-white font-bold text-lg tracking-wide">Auto Accident Injury Care</span>
             </div>
             <p className="text-white/40 text-sm leading-relaxed mb-5">
-              Especialistas en recuperación de lesiones por accidentes de auto en Dallas, Texas.
+              {t("footer.description")}
             </p>
-            {/* Redes sociales */}
+
+            {/* ===== REDES SOCIALES =====
+                Actualiza los href="#" con los links reales
+                de las redes de la clínica. */}
             <div className="flex items-center gap-3">
               <a href="#" aria-label="Facebook" className="w-8 h-8 bg-white/5 hover:bg-[#c22121]/20 border border-white/10 hover:border-[#c22121]/30 rounded-lg flex items-center justify-center transition-all duration-200">
-                <svg className="w-4 h-4 text-white/50 hover:text-[#c22121]" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-white/50" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
               </a>
@@ -60,20 +64,22 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links */}
-          {Object.entries(links).map(([category, items]) => (
-            <div key={category}>
+          {/* ===== COLUMNAS DE LINKS =====
+              Object.entries(categories) →
+              [["Services", [...]], ["Company", [...]], ["Legal", [...]]] */}
+          {Object.entries(categories).map(([categoryTitle, links]) => (
+            <div key={categoryTitle}>
               <p className="text-white font-semibold text-sm mb-4 tracking-wide">
-                {category}
+                {categoryTitle}
               </p>
               <ul className="space-y-2.5">
-                {items.map((item) => (
-                  <li key={item.label}>
-                   <a 
-                      href={item.href}
+                {links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
                       className="text-white/40 hover:text-white text-sm transition-colors duration-200"
                     >
-                      {item.label}
+                      {link.label}
                     </a>
                   </li>
                 ))}
@@ -82,13 +88,13 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Divider */}
+        {/* ===== BARRA INFERIOR ===== */}
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-white/30 text-xs">
-            © {currentYear} Auto Accident Injury Care. Todos los derechos reservados.
+            © {currentYear} Auto Accident Injury Care. {t("footer.rights")}
           </p>
           <p className="text-white/20 text-xs">
-            Dallas, Texas · (555) 123-4567
+            Springdale, Arkansas · (479) 579-0204
           </p>
         </div>
 

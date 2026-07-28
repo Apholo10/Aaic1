@@ -1,7 +1,8 @@
 {
-  "name": "autoinjure",
+  "name": "Auto Accident Injury Care",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Especialistas en recuperación de lesiones por accidentes de auto en Springdale, Arkansas",
   "type": "module",
   "scripts": {
     "dev": "vite",
