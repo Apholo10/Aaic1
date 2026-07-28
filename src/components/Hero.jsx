@@ -67,10 +67,10 @@ export default function Hero() {
 
             {/* Botón CTA */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-8 sm:mb-12 animate-in slide-in-from-bottom duration-700 delay-300">
-              <button className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#c22121] hover:bg-[#a81c1c] rounded-lg font-semibold text-sm sm:text-base text-white transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2">
+              <a href="#contacto" className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#c22121] hover:bg-[#a81c1c] rounded-lg font-semibold text-sm sm:text-base text-white transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2">
                 <span>{t("hero.button")}</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
+              </a>
             </div>
           </div>
 
