@@ -115,7 +115,7 @@ const es = {
           "El latigazo cervical es la lesión más común en accidentes traseros. Nuestro protocolo específico alivia el dolor de cuello, hombros y cabeza de forma efectiva.",
       },
       {
-        title: "Rehabilitación y Fisioterapia",
+        title: "Rehabilitación",
         description:
           "Planes de rehabilitación personalizados para restaurar movilidad, fuerza y función después del accidente. Combinamos quiropráctica con ejercicios terapéuticos.",
       },
