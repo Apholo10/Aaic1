@@ -88,10 +88,10 @@ const en = {
       {
         title: "Legal Case Documentation",
         description:
-          "We help with all the medical documentation needed for your insurance claim or legal case. We work directly with personal injury lawyers.",
+          "We help with all the medical documentation needed for your insurance claim or legal case, and we work directly with personal injury lawyers if you’re represented.",
         stats: [
           { value: "Free", label: "Initial consultation" },
-          { value: "Direct", label: "With your attorney" },
+          { value: "Direct", label: "With the insurance or your attorney" },
         ],
       },
     ],

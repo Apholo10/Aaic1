@@ -118,12 +118,6 @@ export default function Features() {
                   <p className="text-gray-500 text-base sm:text-lg leading-relaxed mb-6">
                     {feature.description}
                   </p>
-                  <div className="inline-flex items-center text-[#c22121] font-semibold text-sm group cursor-pointer">
-                    <span>{t("features.learnMore")}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </div>
                 </div>
               </div>
 
