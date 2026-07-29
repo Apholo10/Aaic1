@@ -67,7 +67,7 @@ const es = {
           "Sabemos que cada hora cuenta después de un accidente. Nuestro equipo está disponible para evaluarte el mismo día y comenzar tu tratamiento sin demoras.",
         stats: [
           { value: "Mismo día", label: "Primera consulta" },
-          { value: "24/7", label: "Línea de contacto" },
+          { value: "Horas de trabajo", label: "Línea de contacto" },
         ],
       },
       {
@@ -205,7 +205,7 @@ const es = {
     cards: [
       { label: "Llámanos", value: "(479) 579-0204" },
       { label: "Horario", value: "Lun–Vie 9am–6pm • Cerrado fines de semana" },
-      { label: "Ubicación", value: "Springdale, Arkansas" },
+      { label: "Ubicación", value: "2988 W. Huntsville Ave. Ste. C, Springdale, AR 72762" },
     ],
   },
 

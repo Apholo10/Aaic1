@@ -41,7 +41,7 @@ const en = {
     title1: "More than a clinic,",
     title2: "we are your team.",
     p1: "At Auto Accident Injury Care we have been helping auto accident victims in Springdale, Arkansas for over 10 years recover physically and legally. We understand the stress that comes with an accident — the pain, the insurance, the lawyers — and we are here to simplify it all.",
-    p2: "Our team of certified chiropractors works hand in hand with personal injury lawyers so you can focus on healing.",
+    p2: "Our team works hand in hand with the insurance or your attorney so you can focus on healing.",
     button: "Meet the team",
     foundedLabel: "Founded in",
     photoPlaceholder: "Your photo here",
@@ -73,7 +73,7 @@ const en = {
           "We know every hour counts after an accident. Our team is available to evaluate you the same day and begin your treatment without delays.",
         stats: [
           { value: "Same day", label: "First consultation" },
-          { value: "24/7", label: "Contact line" },
+          { value: "Labor hours", label: "Contact line" },
         ],
       },
       {
@@ -211,7 +211,7 @@ const en = {
     cards: [
       { label: "Call us", value: "(479) 579-0204" },
       { label: "Hours", value: "Mon–Fri 9am–6pm • Closed weekends" },
-      { label: "Location", value: "Springdale, Arkansas" },
+      { label: "Location", value: "2988 W. Huntsville Ave. Ste. C, Springdale, AR 72762" },
     ],
   },
 
