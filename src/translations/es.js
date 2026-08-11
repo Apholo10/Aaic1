@@ -151,7 +151,7 @@ const es = {
         initials: "GF",
       },
       {
-        name: "Kennsie Rosales",
+        name: "Kennsi Rosales",
         role: "Especialista en Facturación",
         bio: "Gestiona reclamaciones de seguros y facturación con precisión y cuidado.",
         initials: "KR",

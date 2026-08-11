@@ -157,7 +157,7 @@ const en = {
         initials: "GF",
       },
       {
-        name: "Kennsie Rosales",
+        name: "Kennsi Rosales",
         role: "Billing Specialist",
         bio: "Manages insurance claims and billing with precision and care.",
         initials: "KR",
