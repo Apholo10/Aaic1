@@ -235,11 +235,7 @@ const en = {
         { label: "Reviews", href: "#Testimonials" },
         { label: "Contact", href: "#contacto" },
       ],
-      Legal: [
-        { label: "Privacy Policy", href: "#" },
-        { label: "Terms of Use", href: "#" },
-        { label: "HIPAA", href: "#" },
-      ],
+      
     },
     rights: "All rights reserved.",
   },
