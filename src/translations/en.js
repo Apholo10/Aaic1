@@ -40,7 +40,7 @@ const en = {
     badge: "Who we are",
     title1: "More than a clinic,",
     title2: "we are your team.",
-    p1: "At Auto Accident Injury Care we have been helping auto accident victims in Springdale, Arkansas for over 10 years recover physically and legally. We understand the stress that comes with an accident — the pain, the insurance, the lawyers — and we are here to simplify it all.",
+    p1: "At Auto Accident Injury Care we have been helping auto accident victims in Springdale, Arkansas for over 55 years recover physically and legally. We understand the stress that comes with an accident — the pain, the insurance, the lawyers — and we are here to simplify it all.",
     p2: "Our team works hand in hand with the insurance or your attorney so you can focus on healing.",
     button: "Meet the team",
     foundedLabel: "Founded in",

@@ -34,7 +34,7 @@ const es = {
     badge: "Quiénes somos",
     title1: "Más que una clínica,",
     title2: "somos tu equipo.",
-    p1: "En Auto Accident Injury Care llevamos más de 10 años ayudando a víctimas de accidentes de tráfico en Springdale, Arkansas a recuperarse física y legalmente. Entendemos el estrés que viene con un accidente — el dolor, los seguros, los abogados — y estamos aquí para simplificarlo todo.",
+    p1: "En Auto Accident Injury Care llevamos más de 55 años ayudando a víctimas de accidentes de tráfico en Springdale, Arkansas a recuperarse física y legalmente. Entendemos el estrés que viene con un accidente — el dolor, los seguros, los abogados — y estamos aquí para simplificarlo todo.",
     p2: "Nuestro equipo de quiroprácticos certificados trabaja de la mano con abogados de lesiones personales para que tú solo te enfoques en sanar.",
     button: "Conoce al equipo",
     foundedLabel: "Fundada en",
