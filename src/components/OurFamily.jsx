@@ -33,7 +33,7 @@ export default function OurFamily() {
 
     if (normalizedName.includes("ceci")) return ceciImage;
     if (normalizedName.includes("gina")) return ginaImage;
-    if (normalizedName.includes("kennsie")) return kennsieImage;
+    if (normalizedName.includes("kennsi")) return kennsieImage;
     if (normalizedName.includes("jasmine")) return jasmineImage;
     if (normalizedName.includes("arely")) return arelyImage;
 
