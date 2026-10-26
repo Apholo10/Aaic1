@@ -1,6 +1,5 @@
 import { useTranslation } from "../hooks/useTranslation";
 
-
 /*
  * ============================================================
  *  Quees.jsx — Sección "Quiénes somos" con traducciones

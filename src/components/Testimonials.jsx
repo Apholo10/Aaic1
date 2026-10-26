@@ -1,31 +1,9 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "../hooks/useTranslation";
 
-/*
- * ============================================================
- *  Testimonials.jsx — Reseñas de Google con traducciones
- * ============================================================
- *
- *  Este componente combina dos fuentes de texto:
- *  1. Textos de la INTERFAZ (títulos, botones, mensajes de
- *     carga/error) → vienen de las traducciones con t().
- *  2. Textos de las RESEÑAS → vienen de la API de Google en
- *     el idioma en que fueron escritas. NO se traducen, porque
- *     son contenido generado por usuarios reales.
- *
- *  Los testimonios de fallback (ejemplo) se muestran mientras
- *  la API no responde o falla.
- *
- *  ⚠️ SEGURIDAD: la API Key NUNCA va en este archivo.
- *  Vive solo en las variables de entorno de Vercel y se usa
- *  en /api/reviews.js (backend).
- */
-
-// Solo el PLACE_ID vive en el frontend — no es información sensible,
-// se usa únicamente para armar el link "Ver todas las reseñas".
 const PLACE_ID = "ChIJp8uJAYxtyYcRClxXQmQ7vOM";
 
-// Testimonios de ejemplo — visibles hasta que la API responda
+// Testimonios de ejemplo — se reemplazan cuando la API cargue los reales
 const fallbackTestimonials = [
   {
     name: "Maria González",
@@ -71,7 +49,6 @@ const fallbackTestimonials = [
   },
 ];
 
-/* Componente de estrellas — pinta de rojo las estrellas <= rating */
 function StarRating({ rating }) {
   return (
     <div className="flex items-center gap-0.5">
@@ -89,18 +66,16 @@ function StarRating({ rating }) {
   );
 }
 
-/* Tarjeta individual de testimonio */
 function TestimonialCard({ name, rating, text, date, initials, index }) {
   return (
     <div
-      className="bg-white rounded-2xl p-6 sm:p-7 border border-[#1a1a2e]/8 hover:shadow-lg hover:border-[#c22121]/20 transition-all duration-300 flex flex-col gap-4 animate-in slide-in-from-bottom"
-      /* Cada tarjeta entra con un pequeño retraso escalonado */
+      className="bg-white rounded-2xl p-6 sm:p-7 border border-[#1a1a2e]/8 hover:shadow-lg hover:border-[#c22121]/20 transition-all duration-300 flex flex-col gap-4 animate-in slide-in-from-bottom duration-700"
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      {/* Header: avatar con iniciales, nombre, fecha y logo Google */}
+      {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-[#1a1a2e] flex items-center justify-center text-white text-sm font-bold shrink-0">
+          <div className="w-10 h-10 rounded-full bg-[#1a1a2e] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
             {initials}
           </div>
           <div>
@@ -108,6 +83,7 @@ function TestimonialCard({ name, rating, text, date, initials, index }) {
             <p className="text-xs text-gray-400">{date}</p>
           </div>
         </div>
+        {/* Google icon */}
         <svg className="w-5 h-5 opacity-40" viewBox="0 0 24 24" fill="currentColor">
           <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
           <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -116,8 +92,10 @@ function TestimonialCard({ name, rating, text, date, initials, index }) {
         </svg>
       </div>
 
+      {/* Estrellas */}
       <StarRating rating={rating} />
 
+      {/* Texto */}
       <p className="text-gray-500 text-sm leading-relaxed flex-1">
         "{text}"
       </p>
@@ -127,30 +105,24 @@ function TestimonialCard({ name, rating, text, date, initials, index }) {
 
 export default function Testimonials() {
   const { t } = useTranslation();
-
   const [testimonials, setTestimonials] = useState(fallbackTestimonials);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   const [averageRating, setAverageRating] = useState(4.9);
   const [totalReviews, setTotalReviews] = useState(128);
 
   useEffect(() => {
     async function fetchGoogleReviews() {
       setLoading(true);
-      setError(false);
-
       try {
         const res = await fetch("/api/reviews");
-
-        if (!res.ok) {
-          throw new Error("No se pudieron cargar las reseñas.");
-        }
-
         const data = await res.json();
-        const payload = data?.result || data;
-        const reviews = payload?.reviews;
 
-        if (Array.isArray(reviews) && reviews.length > 0) {
+        // El backend (/api/reviews.js) ya devuelve data.result directamente,
+        // así que las reseñas están en data.reviews (no en data.result.reviews)
+        const reviews = data.reviews;
+
+        if (reviews && Array.isArray(reviews)) {
           const mapped = reviews.map((r) => ({
             name: r.author_name,
             rating: r.rating,
@@ -158,20 +130,19 @@ export default function Testimonials() {
             date: r.relative_time_description,
             initials: (r.author_name || "U")
               .split(" ")
-              .filter((n) => n.length > 0)
+              .filter((name) => name.length > 0)
               .map((n) => n[0])
               .join("")
               .slice(0, 2)
               .toUpperCase(),
           }));
-
           setTestimonials(mapped);
-          if (payload?.rating) setAverageRating(payload.rating);
-          if (payload?.user_ratings_total) setTotalReviews(payload.user_ratings_total);
+          if (data.rating) setAverageRating(data.rating);
+          if (data.user_ratings_total) setTotalReviews(data.user_ratings_total);
         }
       } catch (err) {
         console.error("Error fetching reviews:", err);
-        setError(true);
+        setError("No se pudieron cargar las reseñas.");
       } finally {
         setLoading(false);
       }
@@ -187,7 +158,7 @@ export default function Testimonials() {
     >
       <div className="max-w-6xl mx-auto">
 
-        {/* ===== HEADER ===== */}
+        {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center space-x-2 px-4 py-2 bg-[#c22121]/10 border border-[#c22121]/25 rounded-full mb-4 sm:mb-6">
             <span className="text-xs sm:text-sm text-[#c22121] font-medium">
@@ -200,43 +171,40 @@ export default function Testimonials() {
             <span className="text-[#c22121]">{t("testimonials.title2")}</span>
           </h2>
 
-          {/* Resumen del rating: promedio + total de reseñas */}
+          {/* Rating summary */}
           <div className="flex items-center justify-center gap-3 mt-6">
             <span className="text-4xl font-bold text-[#1a1a2e]">{averageRating}</span>
             <div className="flex flex-col items-start gap-1">
               <StarRating rating={Math.round(averageRating)} />
-              <span className="text-sm text-gray-400">
-                {totalReviews} {t("testimonials.verifiedReviews")}
-              </span>
+              <span className="text-sm text-gray-400">{totalReviews} {t("testimonials.verified")}</span>
             </div>
           </div>
         </div>
 
-        {/* ===== ESTADO DE CARGA ===== */}
+        {/* Loading state */}
         {loading && (
           <div className="text-center py-12 text-gray-400 text-sm">
             {t("testimonials.loading")}
           </div>
         )}
 
-        {/* ===== ESTADO DE ERROR =====
-            No oculta el grid — los fallbacks siguen visibles debajo */}
+        {/* Error state */}
         {error && (
           <div className="text-center py-4 text-[#c22121] text-sm mb-8">
-            {t("testimonials.error")}
+            {error}
           </div>
         )}
 
-        {/* ===== GRID DE TESTIMONIOS ===== */}
+        {/* Grid */}
         {!loading && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {testimonials.map((item, i) => (
-              <TestimonialCard key={i} {...item} index={i} />
+            {testimonials.map((t, i) => (
+              <TestimonialCard key={i} {...t} index={i} />
             ))}
           </div>
         )}
 
-        {/* ===== LINK A TODAS LAS RESEÑAS ===== */}
+        {/* CTA bottom */}
         <div className="text-center mt-12">
           <a
             href={`https://search.google.com/local/reviews?placeid=${PLACE_ID}`}
@@ -244,7 +212,7 @@ export default function Testimonials() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 border border-[#1a1a2e]/20 rounded-lg text-[#1a1a2e] text-sm font-semibold hover:bg-[#1a1a2e] hover:text-white transition-all duration-200"
           >
-            {t("testimonials.viewAll")}
+            {t("testimonials.ctaButton")}
             <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

@@ -96,7 +96,11 @@ export default function Footer() {
           <p className="text-white/20 text-xs">
             Springdale, Arkansas · (479) 579-0204
           </p>
+          <a href="/privacy" className="text-gray-400 hover:text-white text-sm">
+  Privacy Policy
+</a>
         </div>
+        
 
       </div>
     </footer>
