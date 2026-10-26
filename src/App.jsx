@@ -1,3 +1,5 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Quees from "./components/Quees";
@@ -9,8 +11,19 @@ import OurPromise from "./components/OurPromise";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 
-function App() {
-  return ( 
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<TuPaginaPrincipal />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function TuPaginaPrincipal() {
+  return (
     <div className="min-h-screen bg-[#f7f5f2] text-[#1a1a2e] overflow-hidden">
       <Navbar />
       <Hero />
@@ -24,6 +37,5 @@ function App() {
       <Footer />
     </div>
   );
-}
+} 
 
-export default App
